@@ -1,17 +1,22 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "create-block/bruceblocks",
+	"name": "create-block/category-search",
 	"version": "0.1.0",
-	"title": "Bruceblocks",
+	"title": "Category Search",
 	"category": "widgets",
 	"icon": "smiley",
-	"description": "Example block scaffolded with Create Block tool.",
+	"description": "Block for searching posts by category",
 	"example": {},
 	"supports": {
 		"html": false
 	},
-	"textdomain": "bruceblocks",
+	"attributes": {
+		"category": {
+			"type": "string"
+		}
+	},
+	"textdomain": "category-search",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",

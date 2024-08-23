@@ -11,7 +11,8 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps } from '@wordpress/block-editor';
+import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
+import { PanelBody, TextControl, ToggleControl } from '@wordpress/components';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -29,10 +30,26 @@ import './editor.scss';
  *
  * @return {Element} Element to render.
  */
-export default function Edit() {
-	return (
-		<p { ...useBlockProps() }>
-			{ __( 'Bruceblocks – hello from the editor!', 'bruceblocks' ) }
-		</p>
-	);
+export default function Edit( { attributes, setAttributes } ) {
+    const { category } = attributes;
+
+    return (
+        <>
+            <InspectorControls>
+                <PanelBody title={ __( 'Settings', 'category-search' ) }>
+                    <TextControl
+                        label={ __(
+                            'Category',
+                            'category-search'
+                        ) }
+                        value={ category || '' }
+                        onChange={ ( value ) =>
+                            setAttributes( { category: value } )
+                        }
+                    />
+                </PanelBody>
+            </InspectorControls>
+            <p { ...useBlockProps() }>© { category }</p>
+        </>
+    );
 }

@@ -1,1 +1,1 @@
-console.log("Hello World! (from create-block-bruceblocks block)");
+console.log("Hello World! (from category-search block)");
