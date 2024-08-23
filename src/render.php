@@ -4,7 +4,7 @@
  */
 ?>
 <?php
-function render_block_core_latest_posts( $attributes ) {
+function render_category_search( $attributes ) {
 	global $post;
 
 
@@ -59,5 +59,5 @@ function render_block_core_latest_posts( $attributes ) {
 		$list_items_markup
 	);
 }
-echo render_block_core_latest_posts($attributes);
 ?>
+<?php esc_html_e(render_category_search($attributes)); ?>
