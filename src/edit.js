@@ -100,7 +100,7 @@ export default function Edit({ attributes, setAttributes }) {
 					/>
 				</PanelBody>
 			</InspectorControls>
-			<p {...useBlockProps()}>© {category}</p>
+			<p {...useBlockProps()}></p>
 		</>
 	);
 }
