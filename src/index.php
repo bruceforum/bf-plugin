@@ -1,6 +1,6 @@
 <?php
 /**
- * @see https://github.com/WordPress/gutenberg/blob/trunk/docs/reference-guides/block-api/block-metadata.md#render
+ * @see https://github.com/WordPress/gutenberg/blob/trunk/packages/block-library/src/latest-posts/index.php
  */
 ?>
 <?php
@@ -60,4 +60,3 @@ function render_category_search( $attributes ) {
 	);
 }
 ?>
-<?php render_category_search($attributes); ?>
