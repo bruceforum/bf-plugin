@@ -55,12 +55,7 @@ export default function Edit({ attributes, setAttributes }) {
 			};
 		},
 		[
-			featuredImageSizeSlug,
-			postsToShow,
-			order,
-			orderBy,
 			categories,
-			selectedAuthor,
 		]
 	);
 	const categorySuggestions =
