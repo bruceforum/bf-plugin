@@ -12,8 +12,11 @@
     "html": false
   },
   "attributes": {
-    "category": {
-      "type": "string"
+    "categories": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
     }
   },
   "textdomain": "category-search",
