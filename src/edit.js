@@ -12,7 +12,7 @@ import { __ } from '@wordpress/i18n';
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
-import { PanelBody } from '@wordpress/components';
+import { PanelBody, QueryControls } from '@wordpress/components';
 import { store as coreStore } from '@wordpress/core-data';
 import { useSelect } from '@wordpress/data';
 
