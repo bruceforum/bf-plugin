@@ -60,4 +60,4 @@ function render_category_search( $attributes ) {
 	);
 }
 ?>
-<?php esc_html_e(render_category_search($attributes)); ?>
+<?php render_category_search($attributes); ?>
