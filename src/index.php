@@ -19,7 +19,7 @@ function render_category_search_input($attributes)
 	$input = new WP_HTML_Tag_Processor('<input type="search" name="qls" required />');
 	if ($input->next_tag()) {
 		$input->set_attribute('id', $input_id);
-		$input->set_attribute('value', get_search_query('qls'));
+		$input->set_attribute('value', get_query_var('qls'));
 		$input->set_attribute('placeholder', $attributes['placeholder']);
 	}
 
