@@ -7,15 +7,15 @@
 <?php
 function render_category_search_input($attributes)
 {
-	$input_id = wp_unique_id('wp-block-search__input-');
-
-	$label_inner_html = empty($attributes['label']) ? __('Search') : wp_kses_post($attributes['label']);
-	$label = new WP_HTML_Tag_Processor(sprintf('<label>%1$s</label>', $label_inner_html));
-	if ($label->next_tag()) {
-		$label->set_attribute('for', $input_id);
-		$label->add_class('wp-block-search__label');
-	}
 	return '<div></div>';
+	// $input_id = wp_unique_id('wp-block-search__input-');
+
+	// $label_inner_html = empty($attributes['label']) ? __('Search') : wp_kses_post($attributes['label']);
+	// $label = new WP_HTML_Tag_Processor(sprintf('<label>%1$s</label>', $label_inner_html));
+	// if ($label->next_tag()) {
+	// 	$label->set_attribute('for', $input_id);
+	// 	$label->add_class('wp-block-search__label');
+	// }
 
 	// $input = new WP_HTML_Tag_Processor(sprintf('<input type="search" name="qls" required />'));
 	// if ($input->next_tag()) {
