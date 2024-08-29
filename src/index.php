@@ -45,7 +45,7 @@ function render_category_search_debug($attributes)
 			<li>%2$s</li>
 		</ul>',
 		get_query_var('qls', 'No Query'),
-		join(',', $attributes)
+		print_r($attributes)
 	);
 }
 
