@@ -42,10 +42,6 @@ function render_category_search_debug()
 
 function render_category_search($attributes)
 {
-	return sprintf(
-		'<div>%1s %2s</div>',
-		render_category_search_input($attributes),
-		render_category_search_debug()
-	);
+	return '<div></div>';
 }
 ?>
