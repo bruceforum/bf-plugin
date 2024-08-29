@@ -7,6 +7,8 @@
 <?php
 function render_category_search_input($attributes)
 {
+	global $wp;
+
 	$input_id = wp_unique_id('wp-block-search__input-');
 
 	$label_inner_html = empty($attributes['label']) ? __('Search') : wp_kses_post($attributes['label']);
@@ -30,7 +32,7 @@ function render_category_search_input($attributes)
 
 	return sprintf(
 		'<form role="search" method="get" action="%1$s">%2$s</form>',
-		esc_url(home_url('/')),
+		esc_url(home_url($wp->request)),
 		$label . $field_markup
 	);
 }
