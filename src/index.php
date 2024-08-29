@@ -7,11 +7,6 @@
 <?php
 function render_category_search_input($attributes)
 {
-	add_filter('query_vars', function ($vars) {
-		$vars[] = 'qls'; // As query-loop-search.
-		return $vars;
-	});
-
 	$input_id = wp_unique_id('wp-block-search__input-');
 
 	$label_inner_html = empty($attributes['label']) ? __('Search') : wp_kses_post($attributes['label']);
@@ -42,7 +37,6 @@ function render_category_search_input($attributes)
 
 function render_category_search_debug()
 {
-	get_query_var('qls');
 	return sprintf(
 		'<ul>
 			<li>

@@ -20,6 +20,11 @@ if (! defined('ABSPATH')) {
 
 include __DIR__ . '/build/index.php';
 
+add_filter('query_vars', function ($vars) {
+    $vars[] = 'qls'; // As query-loop-search.
+    return $vars;
+});
+
 /**
  * Registers the block using the metadata loaded from the `block.json` file.
  * Behind the scenes, it registers also all assets so they can be enqueued
