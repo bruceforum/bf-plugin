@@ -7,6 +7,11 @@
 <?php
 function render_category_search_input($attributes)
 {
+	add_filter('query_vars', function ($vars) {
+		$vars[] = 'qls'; // As query-loop-search.
+		return $vars;
+	});
+
 	$input_id = wp_unique_id('wp-block-search__input-');
 
 	$label_inner_html = empty($attributes['label']) ? __('Search') : wp_kses_post($attributes['label']);
@@ -16,7 +21,7 @@ function render_category_search_input($attributes)
 		$label->add_class('wp-block-search__label');
 	}
 
-	$input = new WP_HTML_Tag_Processor(sprintf('<input type="search" name="s" required />'));
+	$input = new WP_HTML_Tag_Processor(sprintf('<input type="search" name="qls" required />'));
 	if ($input->next_tag()) {
 		$input->set_attribute('id', $input_id);
 		$input->set_attribute('value', get_search_query());
@@ -35,63 +40,16 @@ function render_category_search_input($attributes)
 	);
 }
 
-function render_category_search_results($attributes)
+function render_category_search_debug()
 {
-	global $post;
-
-	$args = array(
-		'posts_per_page'      => 7,
-		'post_status'         => 'publish',
-		'no_found_rows'       => true,
-	);
-
-	if (! empty($attributes['categories'])) {
-		$args['category__in'] = array_column($attributes['categories'], 'id');
-	}
-
-	$query        = new WP_Query();
-	$recent_posts = $query->query($args);
-
-	$list_items_markup = '';
-
-	foreach ($recent_posts as $post) {
-		$post_link = esc_url(get_permalink($post));
-		$title     = get_the_title($post);
-
-		if (! $title) {
-			$title = __('(no title)');
-		}
-
-		$list_items_markup .= '<li>';
-
-		$list_items_markup .= sprintf(
-			'<a class="wp-block-latest-posts__post-title" href="%1$s">%2$s</a>',
-			esc_url($post_link),
-			$title
-		);
-
-		$post_content = html_entity_decode($post->post_content, ENT_QUOTES, get_option('blog_charset'));
-
-		if (post_password_required($post)) {
-			$post_content = __('This content is password protected.');
-		}
-
-		$list_items_markup .= sprintf(
-			'<div class="wp-block-latest-posts__post-full-content">%1$s</div>',
-			wp_kses_post($post_content)
-		);
-
-		$list_items_markup .= "</li>\n";
-	}
-
-	$classes = array('wp-block-latest-posts__list');
-
-	$wrapper_attributes = get_block_wrapper_attributes(array('class' => implode(' ', $classes)));
-
+	get_query_var('qls');
 	return sprintf(
-		'<ul %1$s>%2$s</ul>',
-		$wrapper_attributes,
-		$list_items_markup
+		'<ul>
+			<li>
+				%1s
+			</li>
+		</ul>',
+		get_query_var('qls', 'no query'),
 	);
 }
 
@@ -100,7 +58,7 @@ function render_category_search($attributes)
 	return sprintf(
 		'<div>%1s %2s</div>',
 		render_category_search_input($attributes),
-		render_category_search_results($attributes)
+		render_category_search_debug()
 	);
 }
 ?>
