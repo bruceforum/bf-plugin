@@ -25,6 +25,16 @@ add_filter('query_vars', function ($vars) {
     return $vars;
 });
 
+add_action( 'pre_get_posts', function( \WP_Query $q ) {
+	$qls = get_query_var('qls');
+    if (empty( $qls )) {
+        return;
+    }
+    if ( $q->is_search() ) {
+        $q->set( 's', $qls );
+    }
+} );
+
 /**
  * Registers the block using the metadata loaded from the `block.json` file.
  * Behind the scenes, it registers also all assets so they can be enqueued
