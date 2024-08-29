@@ -40,11 +40,11 @@ function render_category_search_debug($attributes)
 {
 	return sprintf(
 		'<ul>
-			<li>%s$1</li>
-			<li>%s$2</li>
+			<li>%1$s</li>
+			<li>%2$s</li>
 		</ul>',
 		get_query_var('qls', 'No Query'),
-		$attributes
+		join(',', $attributes)
 	);
 }
 
