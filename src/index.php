@@ -15,15 +15,15 @@ function render_category_search_input($attributes)
 		$label->set_attribute('for', $input_id);
 		$label->add_class('wp-block-search__label');
 	}
+	
+	$input = new WP_HTML_Tag_Processor('<input type="search" name="qls" required />');
+	if ($input->next_tag()) {
+		$input->set_attribute('id', $input_id);
+		$input->set_attribute('value', get_search_query('qls'));
+		$input->set_attribute('placeholder', $attributes['placeholder']);
+	}
 	return '<div></div>';
-
-	// $input = new WP_HTML_Tag_Processor(sprintf('<input type="search" name="qls" required />'));
-	// if ($input->next_tag()) {
-	// 	$input->set_attribute('id', $input_id);
-	// 	$input->set_attribute('value', get_search_query());
-	// 	$input->set_attribute('placeholder', $attributes['placeholder']);
-	// }
-
+		
 	// $field_markup = sprintf(
 	// 	'<div class="wp-block-search__inside-wrapper %s" %s>%s</div>',
 	// 	$input
