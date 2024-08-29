@@ -36,11 +36,15 @@ function render_category_search_input($attributes)
 	// );
 }
 
-function render_category_search_debug()
+function render_category_search_debug($attributes)
 {
 	return sprintf(
-		'<div>%1$s</div>',
-		get_query_var('qls', 'No Query')
+		'<ul>
+			<li>%s$1</li>
+			<li>%s$2</li>
+		</ul>',
+		get_query_var('qls', 'No Query'),
+		$attributes
 	);
 }
 
@@ -49,7 +53,7 @@ function render_category_search($attributes)
 	return sprintf(
 		'<div>%1s %2s</div>',
 		render_category_search_input($attributes),
-		render_category_search_debug()
+		render_category_search_debug($attributes)
 	);
 }
 ?>
