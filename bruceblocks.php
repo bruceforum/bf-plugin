@@ -28,11 +28,14 @@ add_filter('query_vars', function ($vars) {
 
 add_action( 'pre_get_posts', function( \WP_Query $q ) {
 	$qls = get_query_var('qls');
+	$qlcat = get_query_var('qlcat');
     if ($q->is_search() && ':qls' === trim( $q->get( 's' ))) {
-		if (!empty($qls)) {
-        	return $q->set('s', $qls);
+		if (!empty($qlcat)) {
+        	$q->set('cat', $qlcat);
 		}
-		return $q->unset('s');
+		if (!empty($qls)) {
+        	$q->set('s', $qls);
+		}
     }
 	return;
 } );
