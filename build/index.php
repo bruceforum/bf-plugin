@@ -37,10 +37,9 @@ function render_category_search_input($attributes)
 	$categories = ''; 
 
 	if (!empty($attributes['categories'])) {
-		$categories = array_reduce($attributes['categories'], function ($ax, $dx) {
-			print_r($ax, $dx);
-			return $ax + (string)$dx['id'];
-		}, '');
+		// $categories = array_reduce($attributes['categories'], function ($ax, $dx) {
+		// 	return $ax + (string)$dx['id'];
+		// }, '');
 	}
 
 	$search_input = create_input_for(wp_kses_post($attributes['label']), $attributes['placeholder'], 'qls', get_query_var('qls'));
