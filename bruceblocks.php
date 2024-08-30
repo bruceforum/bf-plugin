@@ -27,10 +27,10 @@ add_filter('query_vars', function ($vars) {
 
 add_action( 'pre_get_posts', function( \WP_Query $q ) {
 	$qls = get_query_var('qls');
-    if (!empty( $qls )) {
+    if (empty( $qls ) || $q->is_main_query()) {
         return $q->set('s', $qls);
     }
-	return $q;
+	return $q->set('s', $qls);
 } );
 
 /**
