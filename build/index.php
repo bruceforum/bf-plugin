@@ -23,7 +23,12 @@ function create_input_for($label, $placeholder, $value)
 		$input->set_attribute('placeholder', $placeholder);
 	}
 	
-	return $label . $input;
+	$field_markup = sprintf(
+		'<div class="wp-block-search__inside-wrapper">%s</div>',
+		$input
+	);
+
+	return $label . $field_markup;
 }
 
 function render_category_search_input($attributes)
