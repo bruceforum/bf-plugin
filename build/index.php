@@ -102,7 +102,7 @@ function render_category_search_input($attributes)
 	global $wp;
 
 	$search_input = create_input_for($attributes['placeholder'], 'search', 'qls', get_query_var('qls'));
-	$year_select = create_select_for('qlyear', '', get_posts_years_array());
+	$year_select = create_select_for('qlyear', '', []);
 	$sort_select = create_select_for('qlorderby', get_query_var('qlorderby', 'date'), ['date', 'title', 'relevance']);
 
 	return sprintf(
