@@ -37,10 +37,9 @@ function render_category_search_input($attributes)
 	$categories = ''; 
 
 	if (!empty($attributes['categories'])) {
-
-		// $categories = array_reduce($attributes['categories'], function ($ax, $dx) {
-		// 	return $ax + (int)$dx['id'];
-		// }, $categories);
+		$categories = array_reduce($attributes['categories'], function ($ax, $dx) {
+			return $ax . (int)$dx['id'];
+		}, $categories);
 	}
 
 	$search_input = create_input_for(wp_kses_post($attributes['label']), $attributes['placeholder'], 'qls', get_query_var('qls'));
@@ -61,7 +60,7 @@ function render_category_search_debug($attributes)
 {
 	return sprintf(
 		'<pre>%s</pre>',
-		json_encode($attributes['categories'])
+		json_encode($attributes)
 	);
 }
 
