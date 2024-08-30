@@ -30,26 +30,10 @@ add_filter('query_vars', function ($vars) {
 
 add_action( 'pre_get_posts', function( \WP_Query $q ) {
     if ($q->is_search() && ':qls' === trim( $q->get( 's' ))) {
-		$qls = get_query_var('qls');
-		$qlcat = get_query_var('qlcat');
-		$qlorderby = get_query_var('qlorderby');
-		$qlyear = get_query_var('qlyear');
-		$q->unset('s');
-		$q->unset('cat');
-		$q->unset('orderby');
-		$q->unset('year');
-		if (!empty($qls)) {
-        	$q->set('s', $qls);
-		}
-		if (!empty($qlcat)) {
-        	$q->set('cat', $qlcat);
-		}
-		if (!empty($qlorderby)) {
-			$q->set('orderby', $qlorderby);
-		}
-		if (!empty($qlyear) && $qlyear !== 'all') {
-			$q->set('year', $qlyear);
-		}
+		$q->set('s', get_query_var('qls'));
+		$q->set('cat', get_query_var('qlcat'));
+		$q->set('orderby', get_query_var('qlorderby'));
+		$q->set('year', get_query_var('qlyear'));
     }
 } );
 
