@@ -38,6 +38,7 @@ function render_category_search_input($attributes)
 
 	if (!empty($attributes['categories'])) {
 		$categories = array_reduce($attributes['categories'], function ($ax, $dx) {
+			print_r($ax, $dx);
 			return $ax + (int)$dx['id'];
 		}, $categories);
 	}
