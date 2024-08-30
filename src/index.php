@@ -102,7 +102,8 @@ function render_category_search_input($attributes)
 	global $wp;
 
 	$search_input = create_input_for($attributes['placeholder'], 'search', 'qls', get_query_var('qls'));
-	$sort_input = create_select_for('qlorderby', get_query_var('qlorderby', 'date'), ['date', 'title', 'relevance']);
+	$year_select = create_select_for('qlyear', get_query_var('qlyear', date('Y')), get_posts_years_array());
+	$sort_select = create_select_for('qlorderby', get_query_var('qlorderby', 'date'), ['date', 'title', 'relevance']);
 
 	return sprintf(
 		'<form role="search" method="get" action="%1$s">
@@ -112,24 +113,14 @@ function render_category_search_input($attributes)
 				%4$s
 			</div>
 			%5$s
+			%6$s
 		</form>',
 		esc_url(home_url($wp->request)),
 		create_category_input($attributes),
 		wrap_input($attributes['label'], $search_input),
 		create_search_button($attributes),
-		wrap_input('Sort by', $sort_input)
-	);
-}
-
-function render_category_search_debug($attributes)
-{
-	return sprintf(
-		'<pre>
-			%s
-			%s
-		</pre>',
-		json_encode($attributes),
-		json_encode(get_posts_years_array())
+		wrap_input('Year', $year_select),
+		wrap_input('Sort by', $sort_select)
 	);
 }
 
@@ -137,8 +128,7 @@ function render_category_search($attributes)
 {
 	return sprintf(
 		'<div>%1$s %2$s</div>',
-		render_category_search_input($attributes),
-		render_category_search_debug($attributes)
+		render_category_search_input($attributes)
 	);
 }
 ?>
