@@ -37,14 +37,13 @@ function render_category_search_input($attributes)
 	$categories = ''; 
 
 	if (!empty($attributes['categories'])) {
-		$categories = array_reduce($attributes['categories'], function ($ax, $dx) {
-			print_r($ax, $dx);
-			return $ax + (int)$dx['id'];
-		}, $categories);
+		// $categories = array_reduce($attributes['categories'], function ($ax, $dx) {
+		// 	return $ax + (int)$dx['id'];
+		// }, $categories);
 	}
 
 	$search_input = create_input_for(wp_kses_post($attributes['label']), $attributes['placeholder'], 'qls', get_query_var('qls'));
-	// $category_input = create_input_for('Categories', 'Categories', 'qlcat', $categories);
+	$category_input = create_input_for('Categories', 'Categories', 'qlcat', $categories);
 
 	return sprintf(
 		'<form role="search" method="get" action="%1$s">
