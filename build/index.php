@@ -5,8 +5,11 @@
  */
 ?>
 <?php
-function create_input_for($label, $placeholder, $value)
+function create_input_for($label, $placeholder, $name, $value)
 {
+	if (empty($value)) {
+		$value = get_query_var($name, '');
+	}
 	$input_id = wp_unique_id('wp-block-search__input-');
 
 	$label_inner_html = empty($attributes['label']) ? __('Search') : $label;
@@ -16,7 +19,7 @@ function create_input_for($label, $placeholder, $value)
 		$label->add_class('wp-block-search__label');
 	}
 
-	$input = new WP_HTML_Tag_Processor('<input type="search" name="qls" required />');
+	$input = new WP_HTML_Tag_Processor(sprintf('<input type="search" name="%s" required />'), $name);
 	if ($input->next_tag()) {
 		$input->set_attribute('id', $input_id);
 		$input->set_attribute('value', $value);
@@ -34,13 +37,21 @@ function create_input_for($label, $placeholder, $value)
 function render_category_search_input($attributes)
 {
 	global $wp;
+	$categories = ''; 
 
-	$search_input = create_input_for(wp_kses_post($attributes['label']), $attributes['placeholder'], get_query_var('qls'));
+	if (!empty($attributes['categories'])) {
+		$categories = array_reduce($attributes['categories'], function ($ax, $dx) {
+			return $ax + (string)$dx['id'];
+		}, $categories);  // Returns 10
+	}
+
+	$search_input = create_input_for(wp_kses_post($attributes['label']), $attributes['placeholder'], 'qls');
+	$category_input = create_input_for('Categories', 'Categories', 'qlcat', $categories);
 
 	return sprintf(
 		'<form role="search" method="get" action="%1$s">%2$s</form>',
 		esc_url(home_url($wp->request)),
-		$search_input
+		$search_input . $category_input
 	);
 }
 

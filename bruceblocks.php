@@ -22,6 +22,7 @@ include __DIR__ . '/build/index.php';
 
 add_filter('query_vars', function ($vars) {
     $vars[] = 'qls'; // As query-loop-search.
+	$vars[] = 'qlcat'; // As query-loop-category.
     return $vars;
 });
 
