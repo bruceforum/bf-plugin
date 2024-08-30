@@ -7,9 +7,6 @@
 <?php
 function create_input_for($label, $placeholder, $name, $value)
 {
-	if (empty($value)) {
-		$value = get_query_var($name, '');
-	}
 	$input_id = wp_unique_id('wp-block-search__input-');
 
 	$label_inner_html = empty($attributes['label']) ? __('Search') : $label;
@@ -45,7 +42,7 @@ function render_category_search_input($attributes)
 		}, $categories);  // Returns 10
 	}
 
-	$search_input = create_input_for(wp_kses_post($attributes['label']), $attributes['placeholder'], 'qls');
+	$search_input = create_input_for(wp_kses_post($attributes['label']), $attributes['placeholder'], 'qls', get_query_var('qls'));
 	$category_input = create_input_for('Categories', 'Categories', 'qlcat', $categories);
 
 	return sprintf(
