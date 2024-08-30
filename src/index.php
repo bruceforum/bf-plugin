@@ -127,7 +127,7 @@ function render_category_search_input($attributes)
 function render_category_search($attributes)
 {
 	return sprintf(
-		'<div>%1$s %2$s</div>',
+		'<div>%1$s</div>',
 		render_category_search_input($attributes)
 	);
 }
