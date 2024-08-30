@@ -37,6 +37,7 @@ function render_category_search_input($attributes)
 	$categories = ''; 
 
 	if (!empty($attributes['categories'])) {
+
 		// $categories = array_reduce($attributes['categories'], function ($ax, $dx) {
 		// 	return $ax + (int)$dx['id'];
 		// }, $categories);
@@ -48,9 +49,11 @@ function render_category_search_input($attributes)
 	return sprintf(
 		'<form role="search" method="get" action="%1$s">
 			%2$s
+			%3$s
 		</form>',
 		esc_url(home_url($wp->request)),
-		$search_input
+		$search_input,
+		$category_input
 	);
 }
 
@@ -58,7 +61,7 @@ function render_category_search_debug($attributes)
 {
 	return sprintf(
 		'<pre>%s</pre>',
-		json_encode($attributes)
+		json_encode($attributes['categories'])
 	);
 }
 
