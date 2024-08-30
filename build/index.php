@@ -86,7 +86,7 @@ function render_category_search_input($attributes)
 	global $wp;
 	
 	$search_input = create_input_for($attributes['placeholder'], 'search', 'qls', get_query_var('qls'));
-	$sort_input = create_select_for('orderby', 'date', ['date']);
+	$sort_input = create_select_for('qlorderby', 'date', ['date']);
 
 	return sprintf(
 		'<form role="search" method="get" action="%1$s">
