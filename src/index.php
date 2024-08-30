@@ -37,24 +37,11 @@ function render_category_search_input($attributes)
 	);
 }
 
-function render_category_search_debug($attributes)
-{
-	return sprintf(
-		'<ul>
-			<li>%1$s</li>
-			<li>%2$s</li>
-		</ul>',
-		get_query_var('qls', 'No Query'),
-		print_r($attributes)
-	);
-}
-
 function render_category_search($attributes)
 {
 	return sprintf(
-		'<div>%1s %2s</div>',
-		render_category_search_input($attributes),
-		render_category_search_debug($attributes)
+		'<div>%1s</div>',
+		render_category_search_input($attributes)
 	);
 }
 ?>
