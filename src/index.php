@@ -17,7 +17,7 @@ function get_posts_years_array()
 	);
 	if (is_array($years) && count($years) > 0) {
 		foreach ($years as $year) {
-			$result[] = $year[0];
+			$result[] = strval($year[0]);
 		}
 	}
 	return $result;
@@ -102,7 +102,7 @@ function render_category_search_input($attributes)
 	global $wp;
 
 	$search_input = create_input_for($attributes['placeholder'], 'search', 'qls', get_query_var('qls'));
-	$year_select = create_select_for('qlyear', get_query_var('qlyear', date('Y')), get_posts_years_array());
+	$year_select = create_select_for('qlyear', '', get_posts_years_array());
 	$sort_select = create_select_for('qlorderby', get_query_var('qlorderby', 'date'), ['date', 'title', 'relevance']);
 
 	return sprintf(
