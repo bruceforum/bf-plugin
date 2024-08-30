@@ -29,7 +29,7 @@ add_filter('query_vars', function ($vars) {
 });
 
 add_action( 'pre_get_posts', function( \WP_Query $q ) {
-	if (is_admin() || $q->is_main_query()) {
+	if (is_admin() || !is_page() || $q->is_main_query()) {
         return;
     }
 	$qls = get_query_var('qls');
