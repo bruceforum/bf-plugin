@@ -16,7 +16,7 @@ function create_input_for($label, $placeholder, $name, $value)
 		$label->add_class('wp-block-search__label');
 	}
 
-	$input = new WP_HTML_Tag_Processor(sprintf('<input type="search" name="%s" required />'), $name);
+	$input = new WP_HTML_Tag_Processor(sprintf('<input type="search" name="%1$s" required />'), $name);
 	if ($input->next_tag()) {
 		$input->set_attribute('id', $input_id);
 		$input->set_attribute('value', $value);
@@ -37,9 +37,9 @@ function render_category_search_input($attributes)
 	$categories = ''; 
 
 	if (!empty($attributes['categories'])) {
-		// $categories = array_reduce($attributes['categories'], function ($ax, $dx) {
-		// 	return $ax + (string)$dx['id'];
-		// }, '');
+		$categories = array_reduce($attributes['categories'], function ($ax, $dx) {
+			return $ax + (string)$dx['id'];
+		}, '');
 	}
 
 	$search_input = create_input_for(wp_kses_post($attributes['label']), $attributes['placeholder'], 'qls', get_query_var('qls'));
