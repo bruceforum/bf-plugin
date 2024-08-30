@@ -29,14 +29,15 @@ add_filter('query_vars', function ($vars) {
 });
 
 add_action( 'pre_get_posts', function( \WP_Query $q ) {
-	$qls = get_query_var('qls');
-	$qlcat = get_query_var('qlcat');
-	$qlorderby = get_query_var('qlorderby');
-	$qlyear = get_query_var('qlyear');
-	if (is_admin() || $q->is_main_query()) {
-        return;
-    }
     if ($q->is_search() && ':qls' === trim( $q->get( 's' ))) {
+		$qls = get_query_var('qls');
+		$qlcat = get_query_var('qlcat');
+		$qlorderby = get_query_var('qlorderby');
+		$qlyear = get_query_var('qlyear');
+		$q->unset('s');
+		$q->unset('cat');
+		$q->unset('orderby');
+		$q->unset('year');
 		if (!empty($qls)) {
         	$q->set('s', $qls);
 		}
