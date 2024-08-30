@@ -24,6 +24,7 @@ add_filter('query_vars', function ($vars) {
     $vars[] = 'qls'; // As query-loop-search.
 	$vars[] = 'qlcat'; // As query-loop-category.
 	$vars[] = 'qlorderby'; // As query-loop-orderby.
+	$vars[] = 'qlyear'; // As query-loop-year.
     return $vars;
 });
 
@@ -31,6 +32,7 @@ add_action( 'pre_get_posts', function( \WP_Query $q ) {
 	$qls = get_query_var('qls');
 	$qlcat = get_query_var('qlcat');
 	$qlorderby = get_query_var('qlorderby');
+	$qlyear = get_query_var('qlyear');
     if ($q->is_search() && ':qls' === trim( $q->get( 's' ))) {
 		if (!empty($qls)) {
         	$q->set('s', $qls);
@@ -40,6 +42,9 @@ add_action( 'pre_get_posts', function( \WP_Query $q ) {
 		}
 		if (!empty($qlorderby)) {
 			$q->set('orderby', $qlorderby);
+		}
+		if (!empty($qlyear)) {
+			$q->set('year', $qlyear);
 		}
     }
 	return;
