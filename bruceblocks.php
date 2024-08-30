@@ -29,6 +29,9 @@ add_filter('query_vars', function ($vars) {
 });
 
 add_action( 'pre_get_posts', function( \WP_Query $q ) {
+	if (is_admin()) {
+		return;
+	}
 	$qls = get_query_var('qls');
 	$qlcat = get_query_var('qlcat');
 	$qlorderby = get_query_var('qlorderby');
