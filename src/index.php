@@ -39,16 +39,16 @@ function render_category_search_input($attributes)
 	if (!empty($attributes['categories'])) {
 		$categories = array_reduce($attributes['categories'], function ($ax, $dx) {
 			return $ax + (string)$dx['id'];
-		}, $categories);  // Returns 10
+		}, '');
 	}
 
 	$search_input = create_input_for(wp_kses_post($attributes['label']), $attributes['placeholder'], 'qls', get_query_var('qls'));
-	$category_input = create_input_for('Categories', 'Categories', 'qlcat', $categories);
+	// $category_input = create_input_for('Categories', 'Categories', 'qlcat', $categories);
 
 	return sprintf(
 		'<form role="search" method="get" action="%1$s">%2$s</form>',
 		esc_url(home_url($wp->request)),
-		$search_input . $category_input
+		$search_input
 	);
 }
 
