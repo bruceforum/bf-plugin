@@ -16,9 +16,7 @@ function wrap_input($label, $input)
 		$label->add_class('wp-block-search__label');
 	}
 
-	if ($input->next_tag()) {
-		$input->set_attribute('id', $input_id);
-	}
+	$input->set_attribute('id', $input_id);
 	
 	$field_markup = sprintf(
 		'<div class="wp-block-search__inside-wrapper">%s</div>',
@@ -41,14 +39,14 @@ function create_input_for($placeholder, $type, $name, $value)
 
 function create_select_for($name, $value, $options)
 {
-	$options_html = array_reduce($options, function ($ax, $dx) {
+	$options_html = array_reduce($options, function ($ax, $dx) use ($value) {
+		if ($value === $dx) {
+			return $ax . sprintf('<option selected>%s</option>', $dx);
+		}
 		return $ax . sprintf('<option>%s</option>', $dx);
 	}, '');
 
 	$select = new WP_HTML_Tag_Processor(sprintf('<select name="%s" required>%s</select>', $name, $options_html));
-	if ($select->next_tag()) {
-		$select->set_attribute('value', $value);
-	}
 
 	return $select;
 }
