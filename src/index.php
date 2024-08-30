@@ -41,9 +41,9 @@ function create_input_for($placeholder, $type, $name, $value)
 
 function create_select_for($name, $value, $options)
 {
-	$options_html = array_map(function ($ax) {
-		return '<option></option>';
-	}, $options);
+	$options_html = array_reduce($options, function ($ax, $dx) {
+		return $ax . '<option></option>';
+	}, '');
 
 	$select = new WP_HTML_Tag_Processor(sprintf('<select name="%s" required>%s</select>', $name, $options_html));
 	if ($select->next_tag()) {
