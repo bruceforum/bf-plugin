@@ -30,10 +30,11 @@ add_filter('query_vars', function ($vars) {
 
 add_action( 'pre_get_posts', function( \WP_Query $q ) {
     if ($q->is_search() && ':qls' === trim( $q->get( 's' ))) {
+		$qlyear = get_query_var('qlyear');
 		$q->set('s', get_query_var('qls'));
 		$q->set('cat', get_query_var('qlcat'));
 		$q->set('orderby', get_query_var('qlorderby'));
-		$q->set('year', get_query_var('qlyear'));
+		$q->set('year', $qlyear === 'all' ? '' : $qlyear);
     }
 } );
 
