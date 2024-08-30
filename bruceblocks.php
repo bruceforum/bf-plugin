@@ -29,7 +29,10 @@ add_filter('query_vars', function ($vars) {
 });
 
 add_action( 'pre_get_posts', function( \WP_Query $q ) {
-	if (!is_admin() && ($q->is_search() && ':qls' === trim( $q->get( 's' )))) {
+	if (is_admin() || $q->is_main_query()) {
+        return;
+    }
+    if ($q->is_search() && ':qls' === trim( $q->get( 's' ))) {
 		$qls = get_query_var('qls');
 		$qlcat = get_query_var('qlcat');
 		$qlorderby = get_query_var('qlorderby');
