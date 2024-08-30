@@ -5,6 +5,24 @@
  */
 ?>
 <?php
+function get_posts_years_array()
+{
+	global $wpdb;
+	$result = array();
+	$years = $wpdb->get_results(
+		$wpdb->prepare(
+			"SELECT YEAR(post_date) FROM {$wpdb->posts} WHERE post_status = 'publish' GROUP BY YEAR(post_date) DESC"
+		),
+		ARRAY_N
+	);
+	if (is_array($years) && count($years) > 0) {
+		foreach ($years as $year) {
+			$result[] = $year[0];
+		}
+	}
+	return $result;
+}
+
 function wrap_input($label, $input)
 {
 	$input_id = wp_unique_id('wp-block-search__input-');
@@ -17,7 +35,7 @@ function wrap_input($label, $input)
 	}
 
 	$input->set_attribute('id', $input_id);
-	
+
 	$field_markup = sprintf(
 		'<div class="wp-block-search__inside-wrapper">%s</div>',
 		$input
@@ -53,7 +71,7 @@ function create_select_for($name, $value, $options)
 
 function create_category_input($attributes)
 {
-	$categories = ''; 
+	$categories = '';
 
 	if (!empty($attributes['categories'])) {
 		$categories = array_reduce($attributes['categories'], function ($ax, $dx) {
@@ -82,7 +100,7 @@ function create_search_button($attributes)
 function render_category_search_input($attributes)
 {
 	global $wp;
-	
+
 	$search_input = create_input_for($attributes['placeholder'], 'search', 'qls', get_query_var('qls'));
 	$sort_input = create_select_for('qlorderby', get_query_var('qlorderby', 'date'), ['date', 'title', 'relevance']);
 
@@ -106,8 +124,12 @@ function render_category_search_input($attributes)
 function render_category_search_debug($attributes)
 {
 	return sprintf(
-		'<pre>%s</pre>',
-		json_encode($attributes)
+		'<pre>
+			%s
+			%s
+		</pre>',
+		json_encode($attributes),
+		json_encode(get_posts_years_array())
 	);
 }
 
