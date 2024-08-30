@@ -5,7 +5,17 @@
  */
 ?>
 <?php
-function create_input_for($label, $placeholder, $name, $value)
+function create_hidden_input($name, $value)
+{
+	$input = new WP_HTML_Tag_Processor(sprintf('<input type="hidden" name="%1$s" required />', $name));
+	if ($input->next_tag()) {
+		$input->set_attribute('value', $value);
+	}
+
+	return $input;
+}
+
+function create_input_for($label, $placeholder, $type, $name, $value)
 {
 	$input_id = wp_unique_id('wp-block-search__input-');
 
@@ -16,7 +26,7 @@ function create_input_for($label, $placeholder, $name, $value)
 		$label->add_class('wp-block-search__label');
 	}
 
-	$input = new WP_HTML_Tag_Processor(sprintf('<input type="search" name="%1$s" required />', $name));
+	$input = new WP_HTML_Tag_Processor(sprintf('<input type="%1$s" name="%2$s" required />', $type, $name));
 	if ($input->next_tag()) {
 		$input->set_attribute('id', $input_id);
 		$input->set_attribute('value', $value);
@@ -46,8 +56,8 @@ function render_category_search_input($attributes)
 	}
 
 	$submit_button = '<button type="submit" class="wp-block-button wp-element-button">Search</button>';
-	$search_input = create_input_for(wp_kses_post($attributes['label']), $attributes['placeholder'], 'qls', get_query_var('qls'));
-	$category_input = create_input_for('Categories', 'Categories', 'qlcat', $categories);
+	$search_input = create_input_for(wp_kses_post($attributes['label']), $attributes['placeholder'], 'search', 'qls', get_query_var('qls'));
+	$category_input = create_hidden_input('qlcat', $categories);
 
 	return sprintf(
 		'<form role="search" method="get" action="%1$s">
