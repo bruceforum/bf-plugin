@@ -42,6 +42,7 @@ function render_category_search_input($attributes)
 		}, $categories);
 	}
 
+	$submit_button = '<div class="wp-block-button is-style-fill"><button type="submit" class="wp-block-button wp-element-button">Search</button></div>';
 	$search_input = create_input_for(wp_kses_post($attributes['label']), $attributes['placeholder'], 'qls', get_query_var('qls'));
 	$category_input = create_input_for('Categories', 'Categories', 'qlcat', $categories);
 
@@ -49,9 +50,11 @@ function render_category_search_input($attributes)
 		'<form role="search" method="get" action="%1$s">
 			%2$s
 			%3$s
+			%4$s
 		</form>',
 		esc_url(home_url($wp->request)),
 		$search_input,
+		$submit_button,
 		$category_input
 	);
 }
