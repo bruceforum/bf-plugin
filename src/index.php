@@ -48,7 +48,7 @@ function render_category_search_debug($attributes)
 {
 	return sprintf(
 		'<pre>%s</pre>',
-		$attributes['categories']
+		join($attributes['categories'])
 	);
 }
 
