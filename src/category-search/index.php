@@ -5,8 +5,6 @@
  */
 ?>
 <?php
-include '../utilities.php';
-
 function get_posts_years_array()
 {
 	global $wpdb;

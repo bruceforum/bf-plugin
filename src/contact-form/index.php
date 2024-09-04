@@ -5,8 +5,6 @@
  */
 ?>
 <?php
-include '../utilities.php';
-
 function render_contact_form($attributes)
 {
 	return '<div>Hello World!</div>';
