@@ -18,7 +18,8 @@ if (! defined('ABSPATH')) {
 	exit; // Exit if accessed directly.
 }
 
-include __DIR__ . '/build/index.php';
+include __DIR__ . '/build/category-search/index.php';
+include __DIR__ . '/build/contact-form/index.php';
 
 add_filter('query_vars', function ($vars) {
     $vars[] = 'qls'; // As query-loop-search.
