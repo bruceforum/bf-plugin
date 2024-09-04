@@ -28,7 +28,7 @@ add_filter('query_vars', function ($vars) {
     return $vars;
 });
 
-add_action( 'pre_get_posts', function( \WP_Query $q ) {
+add_action('pre_get_posts', function( \WP_Query $q ) {
     if ($q->is_search() && ':qls' === trim( $q->get( 's' ))) {
 		$qlyear = get_query_var('qlyear');
 		$q->set('s', get_query_var('qls'));
