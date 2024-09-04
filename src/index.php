@@ -23,7 +23,7 @@ function get_posts_years_array()
 	return $result;
 }
 
-function wrap_input($label, $input)
+function wrap_input($label, $input, $class)
 {
 	$input_id = wp_unique_id('wp-block-search__input-');
 
@@ -37,7 +37,8 @@ function wrap_input($label, $input)
 	$input->set_attribute('id', $input_id);
 
 	$field_markup = sprintf(
-		'<div class="wp-block-search__inside-wrapper">%s</div>',
+		'<div class="wp-block-search__inside-wrapper %s">%s</div>',
+		$class,
 		$input
 	);
 
@@ -110,7 +111,7 @@ function render_category_search_input($attributes)
 	return sprintf(
 		'<form role="search" method="get" action="%1$s">
 			%2$s
-			<div>
+			<div class="search-wrapper">
 				%3$s
 				%4$s
 			</div>
@@ -119,10 +120,10 @@ function render_category_search_input($attributes)
 		</form>',
 		esc_url(home_url($wp->request)),
 		create_category_input($attributes),
-		wrap_input($attributes['label'], $search_input),
+		wrap_input($attributes['label'], $search_input, 'bb-search'),
 		create_search_button($attributes),
-		wrap_input('Year', $year_select),
-		wrap_input('Sort by', $sort_select)
+		wrap_input('Year', $year_select, 'bb-year'),
+		wrap_input('Sort by', $sort_select, 'bb-sort')
 	);
 }
 
