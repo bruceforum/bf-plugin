@@ -111,12 +111,14 @@ function render_category_search_input($attributes)
 	return sprintf(
 		'<form role="search" method="get" action="%1$s">
 			%2$s
-			<div class="search-wrapper">
+			<div class="bb-search-wrapper">
 				%3$s
 				%4$s
 			</div>
-			%5$s
-			%6$s
+			<div class="bb-refine-wrapper">
+				%5$s
+				%6$s
+			</div>
 		</form>',
 		esc_url(home_url($wp->request)),
 		create_category_input($attributes),

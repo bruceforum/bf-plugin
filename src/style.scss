@@ -5,6 +5,18 @@
  * Replace them with your own styles or remove the file completely.
  */
 
+.bb-search-wrapper {
+	display: flex;
+	flex-direction: row;
+	gap: 4px;
+}
+
+.bb-refine-wrapper {
+	display: flex;
+	flex-direction: row;
+	gap: 24px;
+}
+
 .wp-block-create-block-category-search {
 	background-color: #21759b;
 	color: #fff;
