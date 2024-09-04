@@ -42,7 +42,11 @@ function wrap_input($label, $input, $class)
 		$input
 	);
 
-	return $label . $field_markup;
+	return sprintf(
+		'<div>%s %s</div>',
+		$label,
+		$field_markup
+	);
 }
 
 function create_input_for($placeholder, $type, $name, $value)
