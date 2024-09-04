@@ -11,8 +11,11 @@
 	padding: 2px;
 }
 
-.wp-block-search__inside-wrapper {
+.wp-block-search__inside-wrapper > input,
+.wp-block-search__inside-wrapper > select {
 	border: 1px solid #87B1D7;
+	border-radius: 4px;
+	padding: 0.5rem 0.25rem;
 }
 
 .wp-block-search__inside-wrapper.bb-search {
