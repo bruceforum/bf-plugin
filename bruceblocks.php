@@ -48,9 +48,15 @@ add_action( 'pre_get_posts', function( \WP_Query $q ) {
 function create_block_bruceblocks_block_init()
 {
 	register_block_type(
-		__DIR__ . '/build',
+		__DIR__ . '/build/category-search',
 		array(
 			'render_callback' => 'render_category_search',
+		)
+	);
+	register_block_type(
+		__DIR__ . '/build/contact-form',
+		array(
+			'render_callback' => 'render_contact_form',
 		)
 	);
 }
