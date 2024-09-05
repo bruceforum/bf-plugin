@@ -149,11 +149,6 @@ function render_contact_form($attributes)
     return sprintf(
         '<form role="contact">
             %1$s
-            %2$s
-            %3$s
-            %4$s
-            %5$s
-            %6$s
 		</form>',
         wrap_input('First Name', $firstname_input, '')
         // wrap_input('Last Name', $lastname_input, ''),
