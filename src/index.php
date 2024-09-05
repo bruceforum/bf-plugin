@@ -53,8 +53,12 @@ function create_input_for($placeholder, $type, $name, $value)
 {
     $input = new WP_HTML_Tag_Processor(sprintf('<input type="%s" name="%s" required />', $type, $name));
     if ($input->next_tag()) {
-        $input->set_attribute('value', $value);
-        $input->set_attribute('placeholder', $placeholder);
+        if (!empty($value)) {
+            $input->set_attribute('value', $value);
+        }
+        if (!empty($placeholder)) {
+            $input->set_attribute('placeholder', $placeholder);
+        }
     }
 
     return $input;
@@ -135,23 +139,28 @@ function render_category_search($attributes)
 
 function render_contact_form($attributes)
 {
-    $firstname_input = create_input_for('', "text", 'firstname', 'test');
-    // $lastname_input = create_input_for('', "text", 'lastname', '');
-    // $email_input = create_input_for('name@mycompany.com', "email", 'email', '');
-    // $phone_input = create_input_for('+1 235 454 6789', 'phone', 'phone', '');
-    // $summary_input = create_input_for('Ex : I need help with my account.', 'text', 'summary', '');
-    // $detail_input = create_input_for('Write down all the details here', 'text', 'detail', '');
+    $firstname_input = create_input_for('', "text", 'firstname', '');
+    $lastname_input = create_input_for('', "text", 'lastname', '');
+    $email_input = create_input_for('name@mycompany.com', "email", 'email', '');
+    $phone_input = create_input_for('+1 235 454 6789', 'phone', 'phone', '');
+    $summary_input = create_input_for('Ex : I need help with my account.', 'text', 'summary', '');
+    $detail_input = create_input_for('Write down all the details here', 'text', 'detail', '');
 
     return sprintf(
         '<form role="contact">
             %1$s
+            %2$s
+            %3$s
+            %4$s
+            %5$s
+            %6$s
 		</form>',
-        wrap_input('First Name', $firstname_input, '')
-        // wrap_input('Last Name', $lastname_input, ''),
-        // wrap_input('Email', $$email_input, ''),
-        // wrap_input('Telephone number', $phone_input, ''),
-        // wrap_input('What is your request?', $summary_input, ''),
-        // wrap_input('How can we help you?', $detail_input, '')
+        wrap_input('First Name', $firstname_input, ''),
+        wrap_input('Last Name', $lastname_input, ''),
+        wrap_input('Email', $$email_input, ''),
+        wrap_input('Telephone number', $phone_input, ''),
+        wrap_input('What is your request?', $summary_input, ''),
+        wrap_input('How can we help you?', $detail_input, '')
     );
 }
 ?>
