@@ -139,7 +139,7 @@ function render_category_search($attributes)
 
 function render_contact_form($attributes)
 {
-    $firstname_input = create_input_for('', "text", 'firstname', 'first');
+    $firstname_input = create_input_for('', "text", 'firstname', '');
     // $lastname_input = create_input_for('', "text", 'lastname', '');
     // $email_input = create_input_for('name@mycompany.com', "email", 'email', '');
     // $phone_input = create_input_for('+1 235 454 6789', 'phone', 'phone', '');
