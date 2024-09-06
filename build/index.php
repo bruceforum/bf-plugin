@@ -147,8 +147,8 @@ function render_contact_form($attributes)
     $detail_input = create_input_for('Write down all the details here', 'text', 'detail', '');
 
     return sprintf(
-        '<div class="bb-contact-wrapper">
-            <form role="contact">
+        '<div class="bb-contact-wrapper container">
+            <form role="contact" class="container">
                 %1$s
                 %2$s
                 %3$s
