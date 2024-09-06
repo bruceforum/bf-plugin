@@ -5,4 +5,40 @@
  * Replace them with your own styles or remove the file completely.
  */
 
-.bb-contact-wrapper {}
+.bb-contact-wrapper {
+
+}
+
+.bb-contact-wrapper > form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "a1 b1"
+        "a2 a2"
+        "a3 b3"
+        "a4 a4"
+        "a5 a5";
+}
+
+.bb-contact-wrapper > form .first {
+    grid-area: a1;
+}
+
+.bb-contact-wrapper > form .last {
+    grid-area: b1;
+}
+
+.bb-contact-wrapper > form .email {
+    grid-area: a2;
+}
+
+.bb-contact-wrapper > form .tel {
+    grid-area: a3;
+}
+
+.bb-contact-wrapper > form .summary {
+    grid-area: a4;
+}
+
+.bb-contact-wrapper > form .details {
+    grid-area: a5;
+}

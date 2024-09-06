@@ -147,20 +147,22 @@ function render_contact_form($attributes)
     $detail_input = create_input_for('Write down all the details here', 'text', 'detail', '');
 
     return sprintf(
-        '<form role="contact">
-            %1$s
-            %2$s
-            %3$s
-            %4$s
-            %5$s
-            %6$s
-		</form>',
-        wrap_input('First Name', $firstname_input, ''),
-        wrap_input('Last Name', $lastname_input, ''),
-        wrap_input('Email', $email_input, ''),
-        wrap_input('Telephone number', $phone_input, ''),
-        wrap_input('What is your request?', $summary_input, ''),
-        wrap_input('How can we help you?', $detail_input, '')
+        '<div class="bb-contact-wrapper">
+            <form role="contact">
+                %1$s
+                %2$s
+                %3$s
+                %4$s
+                %5$s
+                %6$s
+            </form>
+        </div>',
+        wrap_input('First Name', $firstname_input, 'first'),
+        wrap_input('Last Name', $lastname_input, 'last'),
+        wrap_input('Email', $email_input, 'email'),
+        wrap_input('Telephone number', $phone_input, 'tel'),
+        wrap_input('What is your request?', $summary_input, 'summary'),
+        wrap_input('How can we help you?', $detail_input, 'details')
     );
 }
 ?>
