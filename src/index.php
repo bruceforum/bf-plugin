@@ -37,13 +37,13 @@ function wrap_input($label, $input, $class)
     $input->set_attribute('id', $input_id);
 
     $field_markup = sprintf(
-        '<div class="wp-block-search__inside-wrapper %s">%s</div>',
-        $class,
+        '<div class="wp-block-search__inside-wrapper">%s</div>',
         $input
     );
 
     return sprintf(
-        '<div>%s %s</div>',
+        '<div class="%s">%s %s</div>',
+        $class,
         $label,
         $field_markup
     );
