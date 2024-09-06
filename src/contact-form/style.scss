@@ -11,6 +11,8 @@
 
 .bb-contact-wrapper > form {
     display: grid;
+    row-gap: 1.5rem;
+    column-gap: 1.5rem;
     grid-template-columns: 1fr 1fr;
     grid-template-areas: "a1 b1"
         "a2 a2"
